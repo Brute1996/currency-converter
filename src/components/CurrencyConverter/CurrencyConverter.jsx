@@ -16,14 +16,15 @@ export const CurrencyConverter = ({ currencyList }) => {
     const convertYouGetAmountAfterCurrSelect = () => {
         if (!youGiveSelectedCurrRate || !youGetSelectedCurrRate) {
             return
-        }
+        };
+
         
         const amount = ((youGiveValue * youGiveSelectedCurrRate) / youGetSelectedCurrRate);
         
         if (!amount) {
             setYouGetValue('')
             return
-        }
+        };
         
         setYouGetValue(amount.toFixed(4))
     };
@@ -65,13 +66,16 @@ export const CurrencyConverter = ({ currencyList }) => {
     const handleAmountChange = (e) => {
         const { name, value } = e.target;
         const inputName = name;
-        const inputValue = parseFloat(value);
-
-        if (!inputValue) {
+        
+        if (value === '') {
             setYouGetValue('')
             setYouGiveValue('')
             return
-        }
+        };
+        
+        const inputValue = parseFloat(value);
+
+
    
         switch (inputName) {
             case "youGive":
