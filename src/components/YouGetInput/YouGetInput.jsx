@@ -1,22 +1,24 @@
+import { TextField, Typography } from "@mui/material";
 import { CurrencySelector } from "../CurrencySelector/CurrencySelector";
 
-export const YouGetInput = ({handleAmountChange, handleCurrencySelect, youGetValue, currencyList}) => {
+export const YouGetInput = ({ handleAmountChange, handleCurrencySelect, youGetValue, currencyList }) => {
     return (
         <div>
-            <label>
-                You get
-                <input
-                    type="number"
-                    name="youGet"
-                    autoComplete="hidden"
-                    onChange={handleAmountChange}
-                    value={youGetValue}
-                />
-            </label>
+            <TextField
+                id="outlined-basic"
+                variant="outlined"
+                label={<Typography fontSize={20}>You get</Typography>}
+
+                type="number"
+                name="youGet"
+                autoComplete="hidden"
+                onChange={handleAmountChange}
+                value={youGetValue}
+            />
 
             <CurrencySelector
                 name="youGetSelect"
-                defaultValue={'UAH'}
+                defaultValue='UAH'
                 currencyList={currencyList}
                 handleCurrencySelect={handleCurrencySelect}
             />

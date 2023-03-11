@@ -1,17 +1,30 @@
-import { CurrencySelectorOption } from "../CurrencySelectorOption/CurrencySelectorOption";
+import { MenuItem, Select } from "@mui/material";
 
 export const CurrencySelector = ({ handleCurrencySelect, currencyList, name, defaultValue }) => {
 
     return (
-        <select
+        // <select
+        //     defaultValue={defaultValue}
+        //     name={name}
+        //     onChange={handleCurrencySelect}
+        // >
+        //     {currencyList.map(({ cc }) =>
+        //         <option key={cc} value={cc}>{cc}</option>
+        //     )}
+            
+        // </select>
+        <Select
             defaultValue={defaultValue}
             name={name}
-            onChange={handleCurrencySelect}
+            onChange={() => handleCurrencySelect}
         >
             {currencyList.map(({ cc }) =>
-                <CurrencySelectorOption key={cc} curr={cc} />
+                <MenuItem key={cc} value={cc}>{cc}</MenuItem>
             )}
-            
-        </select>
+        </Select>
     );
-}
+};
+
+
+
+

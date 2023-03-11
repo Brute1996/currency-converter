@@ -1,3 +1,4 @@
+import { AppBar, Container, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import { getCurrentExchangeRate, UAH } from "./api"
 import { CurrencyConverter } from "./CurrencyConverter/CurrencyConverter"
@@ -17,7 +18,7 @@ export const App = () => {
 
 
     if (!currencyList) {
-        return   
+        return
     }
 
     currencyList.sort((firstCurr, secondCurr) => firstCurr.cc.localeCompare(secondCurr.cc));
@@ -25,13 +26,21 @@ export const App = () => {
     
     return (
         <>
-            <header>
-                <HeaderCurrencyRateList currencyList={currencyList}/>
-            </header>
+            <AppBar position='relative'>
+                <Container>
+                    <header>
+                        <Typography fontSize={48} variant="h1" gutterBottom>Currency converter
+                        <span style={{fontSize: '32px' }}> by Serhii Cherenkov</span>
+                        </Typography>
+                        <HeaderCurrencyRateList currencyList={currencyList} />
+                    </header>
+                </Container>
+            </AppBar>
+            <Container>
             <main>
                 <CurrencyConverter currencyList={currencyList} />
             </main>
-            
+            </Container>
         </>
     );
-}
+};

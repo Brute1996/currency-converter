@@ -1,6 +1,7 @@
 import { YouGiveInput } from "../YouGiveInput/YouGiveInput";
 import { YouGetInput } from "../YouGetInput/YouGetInput";
 import { useEffect, useState } from "react";
+import { CurrencyConverterWrapper } from "./CurrencyConverterWrapper.styled";
 
 export const CurrencyConverter = ({ currencyList }) => {
     const [youGiveValue, setYouGiveValue] = useState('');
@@ -78,8 +79,9 @@ export const CurrencyConverter = ({ currencyList }) => {
 
 
     const handleAmountChange = (e) => {
-        const inputName = e.target.name
-        const inputValue = parseFloat(e.target.value);
+        const {name, value} = e.target
+        const inputName = name
+        const inputValue = parseFloat(value);
    
         switch (inputName) {
             case "youGive":
@@ -99,7 +101,7 @@ export const CurrencyConverter = ({ currencyList }) => {
 
     
     return (
-        <div>
+        <CurrencyConverterWrapper>
             <YouGiveInput
                 handleAmountChange={handleAmountChange}
                 handleCurrencySelect={handleCurrencySelect}
@@ -113,6 +115,6 @@ export const CurrencyConverter = ({ currencyList }) => {
                 youGetValue={youGetValue}
                 currencyList={currencyList} 
                 />
-        </div>
+        </CurrencyConverterWrapper>
     );
 };
