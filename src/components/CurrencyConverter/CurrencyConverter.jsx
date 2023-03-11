@@ -24,12 +24,14 @@ export const CurrencyConverter = ({ currencyList }) => {
         setYouGiveValue(youGetSelectedCurrRate)
         setYouGetValue(youGiveSelectedCurrRate.toFixed(4))
 
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currencyList])
     
 
     useEffect(() => {
         if (!youGiveSelectedCurrRate) {
+            
             return
         }
 
