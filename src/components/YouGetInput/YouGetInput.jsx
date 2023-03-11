@@ -10,6 +10,7 @@ export const YouGetInput = ({ handleAmountChange, handleCurrencySelect, youGetVa
                 label={<Typography fontSize={20}>You get</Typography>}
 
                 type="number"
+                InputProps={{ inputProps: { min: 0 } }}
                 name="youGet"
                 autoComplete="hidden"
                 onChange={handleAmountChange}

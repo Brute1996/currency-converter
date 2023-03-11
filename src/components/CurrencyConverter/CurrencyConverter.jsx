@@ -4,37 +4,21 @@ import { useEffect, useState } from "react";
 import { CurrencyConverterWrapper } from "./CurrencyConverterWrapper.styled";
 
 export const CurrencyConverter = ({ currencyList }) => {
-    const [youGiveValue, setYouGiveValue] = useState('');
-    const [youGetValue, setYouGetValue] = useState('');
-    const [youGiveSelectedCurrRate, setYouGiveSelectedCurrRate] = useState(0);
-    const [youGetSelectedCurrRate, setYouGetSelectedCurrRate] = useState(0);
+    const [youGiveValue, setYouGiveValue] = useState(findCurrRate('UAH'));
+    const [youGetValue, setYouGetValue] = useState(findCurrRate('USD'));
+    const [youGiveSelectedCurrRate, setYouGiveSelectedCurrRate] = useState(youGetValue);
+    const [youGetSelectedCurrRate, setYouGetSelectedCurrRate] = useState(youGiveValue);
 
-    const findCurrRate = (curr) => {
+    function findCurrRate(curr) {
         return currencyList.find(({ cc }) => cc === curr).rate
     }
 
+
     useEffect(() => {
-        if (!currencyList) {
+        if (!youGiveSelectedCurrRate || !youGetSelectedCurrRate) {
             return
         }
         
-        setYouGiveSelectedCurrRate(findCurrRate('USD'));
-        setYouGetSelectedCurrRate(findCurrRate('UAH'));
-        
-        setYouGiveValue(youGetSelectedCurrRate)
-        setYouGetValue(youGiveSelectedCurrRate.toFixed(4))
-
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currencyList])
-    
-
-    useEffect(() => {
-        if (!youGiveSelectedCurrRate) {
-            
-            return
-        }
-
         const amount = ((youGiveValue * youGiveSelectedCurrRate) / youGetSelectedCurrRate);
         
         setYouGetValue(amount.toFixed(4))
@@ -43,10 +27,10 @@ export const CurrencyConverter = ({ currencyList }) => {
 
 
     useEffect(() => {
-        if (!youGiveSelectedCurrRate) {
+        if (!youGiveSelectedCurrRate || !youGetSelectedCurrRate) {
             return
         }
-        
+       
         const amount = ((youGiveValue * youGiveSelectedCurrRate) / youGetSelectedCurrRate);
 
         
@@ -59,31 +43,32 @@ export const CurrencyConverter = ({ currencyList }) => {
 
     const handleCurrencySelect = (e) => {
 
-        const { value, name } = e.target
-        
-        const selectedCurrency = value
-        const currencySelectorName = name
+        const { value, name } = e.target;
+        const selectedCurrency = value;
+        const currencySelectorName = name;
 
         switch (currencySelectorName) {
 
             case 'youGiveSelect':
-                setYouGiveSelectedCurrRate(findCurrRate(selectedCurrency))
-                return
+                setYouGiveSelectedCurrRate(findCurrRate(selectedCurrency));
+                return;
 
             case 'youGetSelect':
-                setYouGetSelectedCurrRate(findCurrRate(selectedCurrency))
-                return
+                setYouGetSelectedCurrRate(findCurrRate(selectedCurrency));
+                return;
 
             default:
-                return
+                return;
         };
     }
 
 
     const handleAmountChange = (e) => {
-        const {name, value} = e.target
-        const inputName = name
-        const inputValue = parseFloat(value);
+        const { name, value } = e.target;
+        const inputName = name;
+        let inputValue = parseFloat(value);
+
+        if (!inputValue) inputValue = 0; 
    
         switch (inputName) {
             case "youGive":
