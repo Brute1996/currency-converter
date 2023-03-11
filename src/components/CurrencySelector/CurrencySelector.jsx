@@ -1,5 +1,3 @@
-import { MenuItem, Select } from "@mui/material";
-
 export const CurrencySelector = ({ handleCurrencySelect, currencyList, name, defaultValue }) => {
 
     return (
