@@ -13,30 +13,29 @@ export const CurrencyConverter = ({ currencyList }) => {
         return currencyList.find(({ cc }) => cc === curr).rate
     }
 
-
-    useEffect(() => {
+    const convertYouGetAmount = () => {
         if (!youGiveSelectedCurrRate || !youGetSelectedCurrRate) {
             return
         }
         
         const amount = ((youGiveValue * youGiveSelectedCurrRate) / youGetSelectedCurrRate);
         
-        setYouGetValue(amount.toFixed(4))
+        if (!amount) {
+            setYouGetValue('')
+            return
+        }
+        
+        return amount.toFixed(4)
+    };
+
+    useEffect(() => {
+        setYouGetValue(convertYouGetAmount())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [youGetSelectedCurrRate]);
 
 
     useEffect(() => {
-        if (!youGiveSelectedCurrRate || !youGetSelectedCurrRate) {
-            return
-        }
-       
-        const amount = ((youGiveValue * youGiveSelectedCurrRate) / youGetSelectedCurrRate);
-
-        
-        setYouGetValue(amount.toFixed(4))
-
-
+        setYouGetValue(convertYouGetAmount())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [youGiveSelectedCurrRate]);
 
@@ -66,9 +65,13 @@ export const CurrencyConverter = ({ currencyList }) => {
     const handleAmountChange = (e) => {
         const { name, value } = e.target;
         const inputName = name;
-        let inputValue = parseFloat(value);
+        const inputValue = parseFloat(value);
 
-        if (!inputValue) inputValue = 0; 
+        if (!inputValue) {
+            setYouGetValue('')
+            setYouGiveValue('')
+            return
+        }
    
         switch (inputName) {
             case "youGive":
