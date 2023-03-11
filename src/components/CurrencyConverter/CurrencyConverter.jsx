@@ -13,7 +13,7 @@ export const CurrencyConverter = ({ currencyList }) => {
         return currencyList.find(({ cc }) => cc === curr).rate
     }
 
-    const convertYouGetAmount = () => {
+    const convertYouGetAmountAfterCurrSelect = () => {
         if (!youGiveSelectedCurrRate || !youGetSelectedCurrRate) {
             return
         }
@@ -25,17 +25,17 @@ export const CurrencyConverter = ({ currencyList }) => {
             return
         }
         
-        return amount.toFixed(4)
+        setYouGetValue(amount.toFixed(4))
     };
 
     useEffect(() => {
-        setYouGetValue(convertYouGetAmount())
+        convertYouGetAmountAfterCurrSelect()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [youGetSelectedCurrRate]);
 
 
     useEffect(() => {
-        setYouGetValue(convertYouGetAmount())
+        convertYouGetAmountAfterCurrSelect()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [youGiveSelectedCurrRate]);
 
