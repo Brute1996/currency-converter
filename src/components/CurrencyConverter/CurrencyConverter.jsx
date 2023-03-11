@@ -86,7 +86,6 @@ export const CurrencyConverter = ({ currencyList }) => {
         }
     }
 
-    
     return (
         <CurrencyConverterWrapper>
             <YouGiveInput
