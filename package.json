@@ -1,6 +1,6 @@
 {
-  "name": "currency-converter-test-task",
-  "homepage": "https://Brute1996.github.io/currency-converter-test-task",
+  "name": "currency-converter",
+  "homepage": "https://Brute1996.github.io/currency-converter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

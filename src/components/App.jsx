@@ -30,16 +30,16 @@ export const App = () => {
                 <Container>
                     <header>
                         <Typography fontSize={48} variant="h1" gutterBottom>Currency converter
-                        <span style={{fontSize: '32px' }}> by Serhii Cherenkov</span>
+                            <span style={{ fontSize: '32px' }}> by Serhii Cherenkov</span>
                         </Typography>
                         <HeaderCurrencyRateList currencyList={currencyList} />
                     </header>
                 </Container>
             </AppBar>
             <Container>
-            <main>
-                <CurrencyConverter currencyList={currencyList} />
-            </main>
+                <main>
+                    <CurrencyConverter currencyList={currencyList} />
+                </main>
             </Container>
         </>
     );
